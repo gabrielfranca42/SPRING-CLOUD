@@ -1,16 +1,25 @@
 spring:
   application:
-    name: springcloud
+    name: patient-service
+
   h2:
     console:
-      enabled: true
       path: /h2-console
+
   datasource:
-    driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:testdb
-    username: sa
-    password:
+    driver-class-name: org.h2.Driver
+    username: admin_viewer
+    password: password
+
   jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
-    show-sql: true
+
+  sql:
+    init:
+      mode: always
+
+server:
+  port: 4000
