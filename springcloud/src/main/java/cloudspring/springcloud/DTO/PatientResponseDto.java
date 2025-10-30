@@ -1,5 +1,5 @@
 package cloudspring.springcloud.DTO;
 
 
-public class PatientDto {
+public class PatientResponseDto {
 }
