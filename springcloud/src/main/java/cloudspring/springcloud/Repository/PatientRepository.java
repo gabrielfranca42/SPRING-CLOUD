@@ -1,7 +1,11 @@
 package cloudspring.springcloud.Repository;
 
+import cloudspring.springcloud.Model.PatientModel;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
-public class PatientRepository {
+public  interface  PatientRepository extends JpaRepository<PatientModel, UUID> {
 }
