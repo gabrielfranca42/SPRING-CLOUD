@@ -29,11 +29,19 @@ public class PatientModel {
     @NotNull
     private LocalDate registerDate;
 
-    public PatientModel(String name, String email, LocalDate dateOfBirth, LocalDate registerDate) {
+
+
+    @NotNull
+    private String Address;
+
+
+    public PatientModel(String name, String email, LocalDate dateOfBirth, LocalDate registerDate, String Address) {
         this.name = name;
         this.email = email;
         this.dateOfBirth = dateOfBirth;
         this.registerDate = registerDate;
+        this.Address = Address;
+
     }
     public PatientModel(){
 
@@ -77,5 +85,13 @@ public class PatientModel {
 
     public void setRegisterDate(LocalDate registerDate) {
         this.registerDate = registerDate;
+    }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
     }
 }

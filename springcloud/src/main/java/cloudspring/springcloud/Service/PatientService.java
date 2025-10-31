@@ -14,7 +14,10 @@ public class PatientService {
         this.patientRepository = patientRepository;
     }
 
-    public List<PatientResponseDto> getPatients(){
+    public List<PatientResponseDto> getPatientModel(){
         List<PatientModel> patientModel = patientRepository.findAll();
+
+        List<PatientResponseDto> patientResponseDtos = patientModel.stream()
+                .map(Pa)
     }
 }
