@@ -4,6 +4,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.time.LocalDate;
+
 public class PatientRequestDto {
     public PatientRequestDto(String name) {
         this.name = name;
@@ -23,11 +25,15 @@ public class PatientRequestDto {
     @NotBlank(message = "Date of birth is required")
     private String registeredDate;
 
-    public PatientRequestDto(String name, String email, String address, String registeredDate) {
+    @NotBlank(message = "Date of birth is required")
+    private LocalDate dateOfBirth;
+
+    public PatientRequestDto(String name, String email, String address, String registeredDate,LocalDate dateOfBirth) {
         this.name = name;
         this.email = email;
         this.address = address;
         this.registeredDate = registeredDate;
+        this.dateOfBirth = dateOfBirth;
     }
 
 
@@ -66,5 +72,13 @@ public class PatientRequestDto {
 
     public void setRegisteredDate(String registeredDate) {
         this.registeredDate = registeredDate;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 }
