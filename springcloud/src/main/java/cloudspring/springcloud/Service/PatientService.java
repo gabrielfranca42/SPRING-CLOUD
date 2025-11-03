@@ -1,5 +1,6 @@
 package cloudspring.springcloud.Service;
 
+import cloudspring.springcloud.DTO.PatientRequestDto;
 import cloudspring.springcloud.DTO.PatientResponseDto;
 import cloudspring.springcloud.Mapper.PatientMapper;
 import cloudspring.springcloud.Model.PatientModel;
@@ -19,12 +20,15 @@ public class PatientService {
     public List<PatientResponseDto> getPatientModel(){
         List<PatientModel> patientModel = patientRepository.findAll();
 
-        List<PatientResponseDto> patientResponseDtos =
-                patientModel.stream()
-                        .map(PatientMapper::toDTO).toList();
+        return patientModel.stream()
+                .map(PatientMapper::toDTO).toList();
 
 
-        return patientResponseDtos;
+
+    }
+
+    public PatientRequestDto createPatient(PatientRequestDto patientRequestDto){
+        PatientModel newPatientModel = patientRepository.save(patientRequestDto)
     }
 
 }
