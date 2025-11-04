@@ -2,6 +2,7 @@ package cloudspring.springcloud.Service;
 
 import cloudspring.springcloud.DTO.PatientRequestDto;
 import cloudspring.springcloud.DTO.PatientResponseDto;
+import cloudspring.springcloud.Exception.EmailAlreadyExistsException;
 import cloudspring.springcloud.Mapper.PatientMapper;
 import cloudspring.springcloud.Model.PatientModel;
 import cloudspring.springcloud.Repository.PatientRepository;
