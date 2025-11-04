@@ -27,7 +27,7 @@ public class PatientService {
 
     }
 
-    public PatientRequestDto createPatient(PatientRequestDto patientRequestDto){
+    public PatientResponseDto createPatient(PatientRequestDto patientRequestDto){
         PatientModel newPatientModel = patientRepository.save(
                 PatientMapper.toModel(patientRequestDto));
 
