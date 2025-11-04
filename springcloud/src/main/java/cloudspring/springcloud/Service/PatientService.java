@@ -3,12 +3,14 @@ package cloudspring.springcloud.Service;
 import cloudspring.springcloud.DTO.PatientRequestDto;
 import cloudspring.springcloud.DTO.PatientResponseDto;
 import cloudspring.springcloud.Exception.EmailAlreadyExistsException;
+import cloudspring.springcloud.Exception.PatientNotFoundException;
 import cloudspring.springcloud.Mapper.PatientMapper;
 import cloudspring.springcloud.Model.PatientModel;
 import cloudspring.springcloud.Repository.PatientRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class PatientService {
@@ -40,6 +42,15 @@ public class PatientService {
                 PatientMapper.toModel(patientRequestDto));
 
         return PatientMapper.toDTO(newPatientModel);
+    }
+
+    public PatientResponseDto updatePatient(UUID id,PatientRequestDto patientRequestDto){
+
+        PatientModel patientModel = patientRepository.findById(id).orElseThrow(
+                ()-> new PatientNotFoundException("Patient not foud with ID:" ,id));
+        if(patientRepository.existsByEmail(patientRequestDto.getEmail())){
+            throw new EmailAlreadyExistsException("A patient with this email " +
+                    " already exists" + patientRequestDto.getEmail());
     }
 
 }
