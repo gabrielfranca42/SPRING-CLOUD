@@ -22,7 +22,7 @@ public class PatientMapper {
         patientModel.setName(patientRequestDto.getName());
         patientModel.setAddress(patientRequestDto.getAddress());
         patientModel.setEmail(patientRequestDto.getEmail());
-        patientModel.setDateOfBirth(patientRequestDto.getDateOfBirth());
+        patientModel.setDateOfBirth(LocalDate.parse(patientRequestDto.getDateOfBirth()));
         patientModel.setRegisterDate(LocalDate.parse(patientRequestDto.getRegisteredDate()));
         return patientModel;
     }

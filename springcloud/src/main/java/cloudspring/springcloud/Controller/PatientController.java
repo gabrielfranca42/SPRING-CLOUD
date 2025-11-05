@@ -4,8 +4,10 @@ import cloudspring.springcloud.DTO.PatientRequestDto;
 import cloudspring.springcloud.DTO.PatientResponseDto;
 import cloudspring.springcloud.Service.PatientService;
 import jakarta.validation.Valid;
+import lombok.Builder;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,7 +36,7 @@ public class PatientController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PatientResponseDto> updatePatientModel(@PathVariable UUID id, @RequestBody PatientRequestDto patientRequestDto){
+    public ResponseEntity<PatientResponseDto> updatePatientModel(@PathVariable UUID id, @Validated({Builder.Default.class}) @RequestBody PatientRequestDto patientRequestDto){
 
         PatientResponseDto patientResponseDto = patientService.updatePatient(id,
                 patientRequestDto);

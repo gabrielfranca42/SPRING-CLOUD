@@ -26,9 +26,9 @@ public class PatientRequestDto {
     private String registeredDate;
 
     @NotBlank(message = "Date of birth is required")
-    private LocalDate dateOfBirth;
+    private String dateOfBirth;
 
-    public PatientRequestDto(String name, String email, String address, String registeredDate,LocalDate dateOfBirth) {
+    public PatientRequestDto(String name, String email, String address, String registeredDate,String dateOfBirth) {
         this.name = name;
         this.email = email;
         this.address = address;
@@ -74,11 +74,11 @@ public class PatientRequestDto {
         this.registeredDate = registeredDate;
     }
 
-    public CharSequence getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 }
