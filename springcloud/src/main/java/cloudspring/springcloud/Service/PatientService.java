@@ -9,6 +9,7 @@ import cloudspring.springcloud.Model.PatientModel;
 import cloudspring.springcloud.Repository.PatientRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -44,13 +45,22 @@ public class PatientService {
         return PatientMapper.toDTO(newPatientModel);
     }
 
-    public PatientResponseDto updatePatient(UUID id,PatientRequestDto patientRequestDto){
+    public PatientResponseDto updatePatient(UUID id,PatientRequestDto patientRequestDto) {
 
         PatientModel patientModel = patientRepository.findById(id).orElseThrow(
-                ()-> new PatientNotFoundException("Patient not foud with ID:" ,id));
-        if(patientRepository.existsByEmail(patientRequestDto.getEmail())){
+                () -> new PatientNotFoundException("Patient not foud with ID:", id));
+        if (patientRepository.existsByEmail(patientRequestDto.getEmail())) {
             throw new EmailAlreadyExistsException("A patient with this email " +
                     " already exists" + patientRequestDto.getEmail());
-    }
+        }
 
+        patientModel.setName(patientRequestDto.getName());
+        patientModel.setAddress(patientRequestDto.getAddress());
+        patientModel.setEmail(patientRequestDto.getEmail());
+        patientModel.setDateOfBirth(LocalDate.parse(patientRequestDto.getDateOfBirth()));
+
+        PatientModel updatedPatientModel = patientRepository.save(patientModel);
+        return PatientMapper.toDTO(updatedPatientModel);
+
+    }
 }

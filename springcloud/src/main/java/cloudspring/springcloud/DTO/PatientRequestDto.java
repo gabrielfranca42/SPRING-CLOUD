@@ -74,7 +74,7 @@ public class PatientRequestDto {
         this.registeredDate = registeredDate;
     }
 
-    public LocalDate getDateOfBirth() {
+    public CharSequence getDateOfBirth() {
         return dateOfBirth;
     }
 
