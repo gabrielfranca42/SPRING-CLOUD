@@ -1,5 +1,6 @@
 package cloudspring.springcloud.DTO;
 
+import cloudspring.springcloud.DTO.Validators.CreatedPatientValidationGroup;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -25,7 +26,7 @@ public class PatientRequestDto {
     @NotBlank(message = "Date of birth is required")
     private String registeredDate;
 
-    @NotBlank(message = "Date of birth is required")
+    @NotBlank(groups = CreatedPatientValidationGroup.class, message = "Date of birth is required")
     private String dateOfBirth;
 
     public PatientRequestDto(String name, String email, String address, String registeredDate,String dateOfBirth) {

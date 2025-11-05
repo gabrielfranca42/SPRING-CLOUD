@@ -2,8 +2,10 @@ package cloudspring.springcloud.Controller;
 
 import cloudspring.springcloud.DTO.PatientRequestDto;
 import cloudspring.springcloud.DTO.PatientResponseDto;
+import cloudspring.springcloud.DTO.Validators.CreatedPatientValidationGroup;
 import cloudspring.springcloud.Service.PatientService;
 import jakarta.validation.Valid;
+import jakarta.validation.groups.Default;
 import lombok.Builder;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
+
+
 
 @RestController
 @RequestMapping("/patients")
@@ -29,7 +33,7 @@ public class PatientController {
     }
 
     @PostMapping
-    public ResponseEntity<PatientResponseDto> createPatientModel(@Valid @RequestBody PatientRequestDto patientRequestDto){
+    public ResponseEntity<PatientResponseDto> createPatientModel(@Validated({Default.class, CreatedPatientValidationGroup.class})@RequestBody PatientRequestDto patientRequestDto){
       PatientResponseDto patientResponseDto = patientService.createPatient(patientRequestDto);
 
       return ResponseEntity.ok().body(patientResponseDto);
