@@ -4,13 +4,14 @@ package cloudspring.springcloud.Model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Builder
-
+@AllArgsConstructor
 @Entity
 public class PatientModel {
 
