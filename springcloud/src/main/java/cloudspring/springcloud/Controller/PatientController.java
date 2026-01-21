@@ -4,6 +4,8 @@ import cloudspring.springcloud.DTO.PatientRequestDto;
 import cloudspring.springcloud.DTO.PatientResponseDto;
 import cloudspring.springcloud.DTO.Validators.CreatedPatientValidationGroup;
 import cloudspring.springcloud.Service.PatientService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import jakarta.validation.Valid;
 import jakarta.validation.groups.Default;
 import lombok.Builder;
@@ -19,6 +21,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/patients")
+@Tag(name = "Patient", description = "API PARA MANEJO DE PARTIENTS")
 public class PatientController {
     private PatientService patientService;
 
