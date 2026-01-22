@@ -4,6 +4,7 @@ import cloudspring.springcloud.DTO.PatientRequestDto;
 import cloudspring.springcloud.DTO.PatientResponseDto;
 import cloudspring.springcloud.DTO.Validators.CreatedPatientValidationGroup;
 import cloudspring.springcloud.Service.PatientService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import jakarta.validation.Valid;
@@ -30,12 +31,14 @@ public class PatientController {
     }
 
     @GetMapping
+    @Operation(summary = "Get Patients")
     public ResponseEntity<List<PatientResponseDto>> getPatients(){
         List<PatientResponseDto> patientsModel = patientService.getPatientModel();
         return ResponseEntity.ok().body(patientsModel);
     }
 
     @PostMapping
+    @Operation(summary = "Create a new Patient")
     public ResponseEntity<PatientResponseDto> createPatientModel(@Validated({Default.class, CreatedPatientValidationGroup.class})@RequestBody PatientRequestDto patientRequestDto){
       PatientResponseDto patientResponseDto = patientService.createPatient(patientRequestDto);
 
@@ -43,6 +46,7 @@ public class PatientController {
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "update Patient")
     public ResponseEntity<PatientResponseDto> updatePatientModel(@PathVariable UUID id, @Validated({Builder.Default.class}) @RequestBody PatientRequestDto patientRequestDto){
 
         PatientResponseDto patientResponseDto = patientService.updatePatient(id,
@@ -53,6 +57,7 @@ public class PatientController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "delete Patient")
     public ResponseEntity<Void> deletePatientModel(@PathVariable UUID id){
         patientService.deletePatientModel(id);
         return ResponseEntity.noContent().build();
