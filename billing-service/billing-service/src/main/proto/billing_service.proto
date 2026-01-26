@@ -13,3 +13,8 @@ message BillingRequest{
   string name = 2;
   string  email = 3;
 }
+
+message BillingResponse {
+  string accoutId = 1;
+  string status = 2;
+}
