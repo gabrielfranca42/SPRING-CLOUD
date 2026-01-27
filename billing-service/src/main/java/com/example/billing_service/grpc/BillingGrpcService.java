@@ -23,7 +23,7 @@ public class BillingGrpcService extends BillingServiceGrpc.BillingServiceImplBas
         // O gRPC gera métodos baseados no seu arquivo .proto.
         // Se der erro em 'setAccountId', verifique se no .proto não está 'accout_id'
         BillingResponse response = BillingResponse.newBuilder()
-                .setAccountId("12345") // CamelCase gerado a partir de account_id
+                .setAccoutId("12345") // CamelCase gerado a partir de account_id
                 .setStatus("active")   // CamelCase gerado a partir de status
                 .build();
 
