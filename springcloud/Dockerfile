@@ -1,7 +1,17 @@
-FROM postgres:16
+FROM maven:3.9.9-eclipse-temurin-21 AS builder
 
-ENV POSTGRES_DB=minha_base
-ENV POSTGRES_USER=postgres
-ENV POSTGRES_PASSWORD=postgres
+RUN mvn dependecy:go-offline -B
 
-EXPOSE 5432
+COPY src ./src
+
+RUN mvn clean package
+
+FROM openjdk:21-jdk AS runner
+
+WORKDIR /app
+
+COPY --from=builder ./app/target/springcloud-0.0.1-SNAPSHOT.jar ./app.jar
+
+EXPOSE 4000
+
+ENTRYPOINT ["java" ,"-jar", "ap.jar "]
