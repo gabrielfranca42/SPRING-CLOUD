@@ -1,11 +1,11 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "billing";
+// MUDANÇA AQUI: Ajuste o pacote para bater com a estrutura do seu projeto Java
+option java_package = "cloudspring.billing.grpc";
 
 service BillingService {
   rpc CreateBillingAccount  (BillingRequest) returns (BillingResponse);
-
 }
 
 message BillingRequest{

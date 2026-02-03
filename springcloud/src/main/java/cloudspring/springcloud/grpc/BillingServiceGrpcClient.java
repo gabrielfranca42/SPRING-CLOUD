@@ -1,5 +1,6 @@
 package cloudspring.springcloud.grpc;
 
+
 // --- Imports Corretos ---
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
