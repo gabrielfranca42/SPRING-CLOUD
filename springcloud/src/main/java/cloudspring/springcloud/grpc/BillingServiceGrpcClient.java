@@ -2,6 +2,8 @@ package cloudspring.springcloud.grpc;
 
 
 // --- Imports Corretos ---
+import cloudspring.billing.grpc.BillingRequest;
+import cloudspring.billing.grpc.BillingResponse;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import lombok.extern.slf4j.Slf4j;
@@ -31,5 +33,16 @@ public class BillingServiceGrpcClient {
 
         // 2. Inicializar o Stub usando o canal (Isso faltava no seu código)
         this.blockingStub = BillingServiceGrpc.newBlockingStub(channel);
+    }
+
+    public BillingResponse createBillingAccount(String patientId, String name,
+                                                String email){
+        BillingRequest request = BillingRequest.newBuilder().setPatientId(patientId)
+                .setName(name).setEmail(email).build();
+
+        BillingResponse response = blockingStub.createBillingAccount(request);
+        log.info("recebeu essa porra: {}",response);
+        return response;
+
     }
 }
