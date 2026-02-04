@@ -7,6 +7,7 @@ import cloudspring.springcloud.Exception.PatientNotFoundException;
 import cloudspring.springcloud.Mapper.PatientMapper;
 import cloudspring.springcloud.Model.PatientModel;
 import cloudspring.springcloud.Repository.PatientRepository;
+import cloudspring.springcloud.grpc.BillingServiceGrpcClient;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -15,10 +16,13 @@ import java.util.UUID;
 
 @Service
 public class PatientService {
-    private PatientRepository patientRepository;
 
-    public PatientService(PatientRepository patientRepository){
+    private PatientRepository patientRepository;
+    private final BillingServiceGrpcClient billingServiceGrpcClient;
+
+    public PatientService(PatientRepository patientRepository, BillingServiceGrpcClient billingServiceGrpcClient){
         this.patientRepository = patientRepository;
+        this.billingServiceGrpcClient =billingServiceGrpcClient;
     }
 
     public List<PatientResponseDto> getPatientModel(){
@@ -41,6 +45,9 @@ public class PatientService {
 
         PatientModel newPatientModel = patientRepository.save(
                 PatientMapper.toModel(patientRequestDto));
+
+        billingServiceGrpcClient.createBillingAccount(newPatientModel.getId().toString(), newPatientModel.getName(),newPatientModel.getEmail());
+
 
         return PatientMapper.toDTO(newPatientModel);
     }
