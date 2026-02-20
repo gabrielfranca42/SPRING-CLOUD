@@ -1,8 +1,8 @@
 package com.example.billing_service.grpc;
 
-import billing.BillingRequest;
-import billing.BillingResponse;
-import billing.BillingServiceGrpc;
+import cloudspring.billing.grpc.BillingRequest;
+import cloudspring.billing.grpc.BillingResponse;
+import cloudspring.billing.grpc.BillingServiceGrpc;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.slf4j.Logger;
